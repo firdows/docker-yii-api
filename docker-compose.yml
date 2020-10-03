@@ -1,0 +1,26 @@
+version: '3'
+services: 
+    mariadb:
+        image: mariadb:10.5.5
+        container_name: ${MYSQL_CONTAINER_NAME}
+        # networks: 
+        #     default:
+        #         ipv4_address: 10.5.0.5
+        environment: 
+            - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+            - MYSQL_DATABASE=${MYSQL_DATABASE}
+            - MYSQL_USER=${MYSQL_USER}
+            - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+            - TZ=${TZ}
+        volumes: 
+            - ./mysql/data:/var/lib/mysql
+
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        container_name: pma
+        links: 
+            - mariadb
+        environment: 
+            - PMA_HOST=${MYSQL_CONTAINER_NAME}
+        ports: 
+            - 8080:80
