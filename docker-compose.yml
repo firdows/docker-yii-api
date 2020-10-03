@@ -86,8 +86,8 @@ services:
         environment: 
             - PMA_HOST=${MYSQL_CONTAINER_NAME}
             - TZ=${TZ}
-        ports: 
-            - 8080:80
+        # ports: 
+        #     - 8080:80
 
 networks: 
     default:
