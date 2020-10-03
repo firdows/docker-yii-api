@@ -5,5 +5,5 @@
 ```
 docker ps
 docker cp nginx-proxy:/etc/nginx/conf.d /config/nginx
-docker cp nginx-proxy:/etc/nginx/nginx /config/nginx
+docker cp nginx-proxy:/etc/nginx/nginx.conf /config/nginx
 ```
