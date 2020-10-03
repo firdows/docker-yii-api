@@ -48,15 +48,15 @@ services:
             - ./app/www/public:/app/www   
             - ./app/api/public:/app/api    
 
+
     # php7-fpm:
     #     image: php:7.4-fpm-alpine
     #     container_name: php7
     #     volumes: 
     #         - ./app/api/public:/app/api
-    # php-fpm:
+    # php5-fpm:
         # image: php:5.6-fpm-alpine
-        # image: php:7.4-fpm-alpine
-        # container_name: php
+        # container_name: php5
         # volumes: 
         #     - ./app/www/public:/app/www
 
@@ -73,7 +73,10 @@ services:
             - MYSQL_PASSWORD=${MYSQL_PASSWORD}
             - TZ=${TZ}
         volumes: 
+            - ./mysql/initdb/:/docker-entrypoint-initdb.d
             - ./mysql/data:/var/lib/mysql
+        ports:
+            - 3306:3306
 
     phpmyadmin:
         image: phpmyadmin/phpmyadmin
